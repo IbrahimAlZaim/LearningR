@@ -93,3 +93,10 @@ nhanes_small %>%
     mean_bmi = mean(bmi, na.rm = TRUE)
   ) %>%
   ungroup()
+
+readr::write_csv(
+    nhanes_small,
+    here::here("data/nhanes_small.csv")
+)
+
+nhanes_small <- readr::read_csv(here::here("data/nhanes_small.csv"))
