@@ -6,6 +6,26 @@ execute:
   warning: false
   message: false
 ---
+
+1. Name: Ibrahim AlZaim
+2. Affiliation: Aarhus University
+
+#Introduction
+
+bla bla bla
+
+#Methods and Results
+
+bla *bla*
+
+##Analysis
+
+bla **bla** bla
+
+#Discussion
+
+bla bla
+
 ```{r}
 2 + 2
 ```
@@ -19,7 +39,9 @@ nhanes_small <- read_csv(here::here("data/nhanes_small.csv"))
 ```{r}
 nhanes_small
 ```
+
 ## Table of results
+
 ```{r}
 nhanes_small %>%
   filter(!is.na(diabetes)) %>%
@@ -57,3 +79,9 @@ nhanes_small %>%
   ) %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 ```
+
+
+```{r}
+2+2
+```
+
