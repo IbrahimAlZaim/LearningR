@@ -28,3 +28,4 @@ nhanes_small %>%
 nhanes_small %>%
   select(starts_with("bp")) %>%
   rename(bp_systolic = bp_sys_ave)
+
