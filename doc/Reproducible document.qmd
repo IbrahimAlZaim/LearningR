@@ -138,3 +138,41 @@ nhanes_small %>%
   ggplot(aes(x = education)) +
   geom_bar()
 ```
+
+## Plotting 2 variables
+
+```{r}
+nhanes_small %>% 
+  ggplot(aes(x = bmi, y = bp_sys_ave)) +
+  geom_hex(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(education), !is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar(position = position_dodge())
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes), bmi >= 30) %>%
+  ggplot(aes(x = diabetes, y = bmi)) +
+  geom_violin(na.rm = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
