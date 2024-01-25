@@ -27,6 +27,7 @@ bla **bla** bla
 
 bla bla
 
+
 ```{r}
 2 + 2
 ```
@@ -83,8 +84,57 @@ nhanes_small %>%
 
 
 ```{r}
-2+2
+2 + 2
 ```
 Cute kitten in @fig-cat
 
-![Adorable!](images/b6a6d50de7eb36065b98ebd254d46cd5.jpg){#fig-cat width="100%" length="100%"}
+BMI distribution in @fig-bmi-histo
+
+![Adorable!](images/b6a6d50de7eb36065b98ebd254d46cd5.jpg){#fig-cat width="50%" length="50%"}
+
+
+## One variable plot
+
+```{r}
+nhanes_small %>%
+  #| fig-cap: "Distribution of BMI."
+  #| label: fig-bmi-histo
+  filter(bmi >= 30) %>%
+  ggplot(aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
+
+```{r}
+nhanes_small %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+```
+```{r}
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
+```{r}
+#| label: fig-diabetes-education
+#| fig-cap: "Counts of Diabetes and Education."
+#| fig-subcap:
+#|   - "Number of those with or without Diabetes."
+#|   - "Number of those with different educational status."
+#| layout-ncol: 2
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
