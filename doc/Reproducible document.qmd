@@ -2,6 +2,7 @@
 title: "Reproducible document"
 author: "Ibrahim AlZaim"
 format: html
+theme: yeti
 execute: 
   warning: false
   message: false
@@ -84,4 +85,6 @@ nhanes_small %>%
 ```{r}
 2+2
 ```
+Cute kitten in @fig-cat
 
+![Adorable!](images/b6a6d50de7eb36065b98ebd254d46cd5.jpg){#fig-cat width="100%" length="100%"}
