@@ -171,10 +171,6 @@ nhanes_exercise <- NHANES %>%
 ```{r}
 #| label: Age distribution
 #| fig-cap: Distribution of age
-#| fig-subcap:
-#| - "General population"
-#| - "Diabetic patients"
-#| layout-ncol  - TRUE
 # Distribution of age
 nhanes_exercise %>%
   ggplot(aes(x = age)) +
@@ -201,4 +197,50 @@ nhanes_exercise %>%
   ggplot(aes(x = bmi, y = mean_arterial_pressure)) +
   geom_hex(na.rm = TRUE) +
   geom_smooth(na.rm = TRUE)
+```
+
+```{r}
+nhanes_exercise %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = education, y = bp_sys_ave, colour = diabetes)) +
+  geom_boxplot(na.rm = TRUE)
+```
+
+```{r}
+base_scatterplot2 <-
+  nhanes_exercise %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+  geom_point(na.rm = TRUE) +
+  facet_grid(rows = vars(diabetes), cols = vars(education)) +
+  geom_smooth(na.rm = TRUE, color = "red") +
+  scale_colour_viridis_c(option = "inferno") +
+  theme_minimal() +
+  labs(
+    title = "BMI, systolic blood pressure, and age by diabetes and education",
+    y = "Systolic Blood Pressure (mmHg)",
+    x = "BMI (kg/m2)"
+  )
+ggsave(here::here("doc/images/scatterplot.pdf"),
+  base_scatterplot2,
+  width = 7, height = 5
+)
+```
+ggsave(here::here("doc/images/scatterplot.pdf"),
+  base_scatterplot2,
+  width = 7, height = 5
+)
+## Exercise for changing colours
+
+```{r}
+nhanes_exercise %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar(position = position_dodge()) +
+  scale_fill_viridis_d(option = "cividis")
+
+nhanes_exercise %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave, colour = age)) +
+  geom_point(na.rm = TRUE) +
+  scale_colour_viridis_c(option = "inferno")
 ```
